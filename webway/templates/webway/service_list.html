@@ -1,0 +1,36 @@
+{% extends 'webway/base.html' %}
+{% load static %}
+
+{% block title %}Service List{% endblock %}
+
+{% block content %}
+    <h2>Services</h2>
+    <form action="/services/create/">
+        <input type="submit" value="Create"></form>
+    </form>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Protocol</th>
+            <th>Port</th>
+            <th>Bind Address</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+
+
+
+    {% for service in services %}
+        <tr>
+            <th>{{ service.id }}</th>
+            <td>{{ service.name }}</td>
+            <td>{{ service.protocol }}</td>
+            <td>{{ service.port }}</td>
+            <td>{{ service.bind_addr }}</td>
+            <td>{{ service.description }}</td>
+            <td></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

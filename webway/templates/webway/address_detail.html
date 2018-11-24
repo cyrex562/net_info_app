@@ -1,0 +1,21 @@
+{% extends 'webway/base.html' %}
+{% load static %}
+{% block title %}Address Detail{% endblock %}
+{% block content %}
+    <h2>Address</h2>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <td>{{ address.id }}</td>
+        </tr>
+        <tr>
+            <th>Value</th>
+            <td>{{ address.value }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ address.type }}</td>
+        </tr>
+    </table>
+{% endblock %}
+

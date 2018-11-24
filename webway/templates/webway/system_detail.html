@@ -1,0 +1,37 @@
+{% extends 'webway/base.html' %}
+{% load static %}
+{% block title %}System Detail{% endblock %}
+{% block content %}
+    <h2>System</h2>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <td>{{ system.id }}</td>
+        </tr>
+        <tr>
+            <th>Nickname</th>
+            <td>{{ system.nickname }}</td>
+        </tr>
+        <tr>
+            <th>Hostname</th>
+            <td>{{ system.hostname }}</td>
+        </tr>
+        <tr>
+            <th>Interfaces</th>
+            <td>{% for interface in system.interfaces %}
+                {{ interface.name }}: {% for address in interface.addresses %}
+                    {{ address.value }}, {% endfor %}<br/>
+            {% endfor %}</td>
+        </tr>
+        <tr>
+            <th>Services</th>
+            <td>{% for service in system.services %}
+                {{ service.name }}: {{ service.protocol }}/{{ service.port }}
+            {% endfor %}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ system.description }}</td>
+        </tr>
+    </table>
+{% endblock %}

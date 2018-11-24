@@ -1,0 +1,43 @@
+{% extends 'webway/base.html' %}
+{% load static %}
+
+{% block title %}System List{% endblock %}
+
+{% block content %}
+    <h2>Systems</h2>
+    <form action="/systems/create/">
+        <input type="submit" value="Create"></form>
+    </form>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Nickname</th>
+            <th>Hostname</th>
+            <th>Interfaces</th>
+            <th>Services</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+
+    {% for system in systems %}
+        <tr>
+            <th>{{ system.id }}</th>
+            <td>{{ system.nickname }}</td>
+            <td>{{ system.hostname }}</td>
+            <td>
+                {% for interface in system.interfaces.all %}
+                    {{ interface.name }}: {% for address in interface.addresses.all %} {{ address.value }}, {% endfor %}<br/>
+                {% endfor %}
+            </td>
+            <td>
+            <!-- TODO: display bind address if present -->
+                {% for service in system.services.all %}
+                    {{ service.name }}: {{ service.protocol }}/{{ service.port }}
+                {% endfor %}
+            </td>
+            <td>{{ system.description }}</td>
+            <td></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'webway/base.html' %}
+{% load static %}
+
+{% block title %}Interface List{% endblock %}
+
+{% block content %}
+    <h2>Interfaces</h2>
+    <form action="/interfaces/create/">
+        <input type="submit" value="Create"></form>
+    </form>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Addresses</th>
+            <th>Actions</th>
+        </tr>
+
+
+
+    {% for interface in interfaces %}
+        <tr>
+            <th>{{ interface.id }}</th>
+            <td>{{ interface.name }}</td>
+            <td>
+                {% for address in interface.addresses.all %}
+                    {{ address.value }}<br/>
+                {% endfor %}
+            </td>
+            <td></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

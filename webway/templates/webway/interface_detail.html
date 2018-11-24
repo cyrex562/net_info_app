@@ -1,0 +1,23 @@
+{% extends 'webway/base.html' %}
+{% load static %}
+{% block title %}Interface Detail{% endblock %}
+{% block content %}
+    <h2>Interface</h2>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <td>{{ interface.id }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ interface.name }}</td>
+        </tr>
+        <tr>
+            <th>Addresses</th>
+            <td>{% for address in interface.addresses.all %}
+                {{ address.value }}<br/>
+            {% endfor %}</td>
+        </tr>
+    </table>
+{% endblock %}
+
